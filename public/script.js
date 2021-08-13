@@ -9,21 +9,19 @@ weatherForm.addEventListener("submit", (e) => {
   error.textContent = "Loading...";
   weatherData.textContent = "";
 
-  fetch("http://localhost:3000/weather?address=" + location).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          errorText.textContent = data.error;
-        } else {
-          error.textContent = `Location:${data.location.name},${data.location.region},${data.location.country}`;
-          weatherData.textContent = `${data.Description}. It is currently ${data.Temperature} degrees out.
+  fetch("/weather?address=" + location).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        errorText.textContent = data.error;
+      } else {
+        error.textContent = `Location:${data.location.name},${data.location.region},${data.location.country}`;
+        weatherData.textContent = `${data.Description}. It is currently ${data.Temperature} degrees out.
        There is a ${data.chance_of_rain} chance of rain.`;
 
-          // icon.innerHTML = `<img src=${data.weather_icon} />`;
-        }
-      });
-    }
-  );
+        // icon.innerHTML = `<img src=${data.weather_icon} />`;
+      }
+    });
+  });
 
   search.value = "";
 });

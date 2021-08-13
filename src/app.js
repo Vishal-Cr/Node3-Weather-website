@@ -1,9 +1,9 @@
 const path = require("path");
-const geoCode = require("../weather-app/geoCode");
+const geoCode = require("../weather-app-api/geoCode");
 const express = require("express");
 const hbs = require("hbs");
 const app = express();
-
+const port = process.env.PORT || 3000;
 const publicDirectory = path.join(__dirname, "../public/");
 const viewsPath = path.join(__dirname, "./templates/");
 const partialsPath = path.join(__dirname, "./templates/partials");
@@ -70,6 +70,6 @@ app.get("*", (req, res) => {
     paragraph: "Page Not Found.",
   });
 });
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("The Server is up and Running.");
 });
